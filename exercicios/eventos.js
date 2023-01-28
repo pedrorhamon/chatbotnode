@@ -43,5 +43,4 @@ bot.on('sticker', ctx => {
     console.log(sticker);
         ctx.reply(`Estou vendo o que você enviou o ${sticker.emoji} do conjuto ${sticker.set_name}`)
 })
-
 bot.startPolling()
