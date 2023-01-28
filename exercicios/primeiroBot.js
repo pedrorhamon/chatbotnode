@@ -1,6 +1,6 @@
 const env = require('../.env');
 const Telegraf = require('telegraf');
-const bot = new Telegraf(env.token)
+const bot = new Telegraf(env.token);
 
 bot.start(ctx => {
     const from = ctx.update.message.from;
@@ -9,13 +9,13 @@ bot.start(ctx => {
 });
 
 bot.on('text',async (ctx, next) => {
-    await ctx.reply('Mid 1')
-    next()
+    await ctx.reply('Mid 1');
+    next();
 })
 
 bot.on('text', async (ctx, next) => {
-    await ctx.reply('Mid 2')
-    next()
+    await ctx.reply('Mid 2');
+    next();
 })
 
 bot.startPolling();

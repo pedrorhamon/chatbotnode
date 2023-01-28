@@ -26,21 +26,21 @@ bot.on('contact', ctx => {
 
 bot.on('voice', ctx => {
     const voice = ctx.update.message.voice
-    console.log(voice);
+    console.log(voice)
     ctx.reply(`Audio recebido, ele possui ${voice.duration} segundos`)
 })
 
 bot.on('photo', ctx => {
     const photo = ctx.update.message.photo
-    console.log(photo);
+    console.log(photo)
     photo.forEach((ph, i) => {
         ctx.reply(`Photo ${i} tem resolução de ${ph.width}x${ph.height}`)
-    });
+    })
 })
 
 bot.on('sticker', ctx => {
     const sticker = ctx.update.message.sticker
-    console.log(sticker);
+    console.log(sticker)
         ctx.reply(`Estou vendo o que você enviou o ${sticker.emoji} do conjuto ${sticker.set_name}`)
 })
 bot.startPolling()
