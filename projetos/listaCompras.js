@@ -26,4 +26,5 @@ bot.on('text', ctx => {
 
 bot.action(/delete (.+)/, ctx => {
     lista = lista.filter(item => item !== ctx.match[1])
+    ctx.reply(`${ctx.match[1]} deletado!`, botoes())
 })
