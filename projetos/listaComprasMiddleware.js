@@ -16,7 +16,9 @@ bot.use(session())
 
 const verificarUsuario = (ctx, next) => {
     const mesmoIDMsg = ctx.update.message && ctx.update.message.from.id === env.userID
-    const mesmoIdCallbacl = ctx.update.callback_query && ctx.update.callback_query.from.id === env.userID
+    const mesmoIdCallback = ctx.update.callback_query && ctx.update.callback_query.from.id === env.userID
+
+    mesmoIDMsg || mesmoIdCallback ? next() : ctx.reply('Desculpe, não fui autorizado a conversar com você.')
 }
 
 bot.start(async ctx => {
