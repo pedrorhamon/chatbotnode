@@ -21,20 +21,22 @@ const verificarUsuario = (ctx, next) => {
     mesmoIDMsg || mesmoIdCallback ? next() : ctx.reply('Desculpe, não fui autorizado a conversar com você.')
 }
 
-bot.start(async ctx => {
+const processando = ({reply}, next) => reply('processando...').then(()=> next())
+
+bot.start(verificarUsuario, async ctx => {
     const name = ctx.update.message.from.first_name
     await ctx.reply(`Seja bem vindo, ${name}`)
     await ctx.reply('Escreva os itens que você deseja adicionar...')
     ctx.session.lista = []
 })
 
-bot.on('text', ctx => {
+bot.on('text', verificarUsuario, processando, ctx => {
     let msg = ctx.update.message.text
     ctx.session.lista.push(msg)
     ctx.reply(`${msg} adicionado!`, botoes(ctx.session.lista))
 })
 
-bot.action(/delete (,+)/, ctx => {
+bot.action(/delete (,+)/, verificarUsuario, ctx => {
     ctx.session.lista = ctx.session.lista.filter(item => item !== ctx.match[1])
     ctx.reply(`${ctx.match[1]} deletado!`, botoes(ctx.session.lista))
 })
